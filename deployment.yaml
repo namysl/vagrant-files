@@ -16,12 +16,10 @@ spec:
         app: nginx-on-minikube
     spec: 
       containers: 
-        - 
-          image: "docker.io/nginx:1.23"
-          name: nginx
-          ports: 
-            - 
-              containerPort: 80
+      - name: nginx
+        image: "docker.io/nginx:1.23"
+        ports: 
+        - containerPort: 80
     strategy: 
       rollingUpdate: 
         maxSurge: 25%
