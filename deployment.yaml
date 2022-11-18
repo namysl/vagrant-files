@@ -1,0 +1,29 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: nginx-on-minikube
+  name: nginx-on-minikube
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: nginx-on-minikube
+  template: 
+    metadata: 
+      labels: 
+        app: nginx-on-minikube
+    spec: 
+      containers: 
+        - 
+          image: "docker.io/nginx:1.23"
+          name: nginx
+          ports: 
+            - 
+              containerPort: 80
+    strategy: 
+      rollingUpdate: 
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
