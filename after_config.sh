@@ -15,8 +15,6 @@ kubectl proxy --address='0.0.0.0' --disable-filter=true &
 
 kubectl port-forward service/nginx-on-minikube --address 0.0.0.0 30001:80 &
 kubectl port-forward service/prometheus-server-ng --address 0.0.0.0 30002:80 &
-kubectl port-forward service/prometheus-server-np --address 0.0.0.0 30002:80 &
-kubectl port-forward service/grafana-np --address 0.0.0.0 30002:80 &
 kubectl port-forward service/grafana-np --address 0.0.0.0 30003:80 &
 
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
