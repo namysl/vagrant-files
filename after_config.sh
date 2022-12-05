@@ -1,9 +1,11 @@
 #!/bin/bash
 
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm install prometheus prometheus-community/prometheus
 kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
 kubectl patch svc prometheus-server-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30002}]'
 
+helm repo add grafana https://grafana.github.io/helm-charts
 helm install grafana grafana/grafana
 kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
 kubectl patch svc grafana-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30003}]'
