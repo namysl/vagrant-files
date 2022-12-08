@@ -25,7 +25,13 @@ kubectl port-forward service/grafana-np --address 0.0.0.0 30003:80 &
 - GET ACCESS TO GRAFANA:
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
-- GET URL FOR SERVICE:
+- ADD DATA SOURCES IN GRAFANA:
+URL: http://prometheus-server:80
+
+- IMPORT DASHBOARD:
+ID: 1860
+
+- GET URL FOR THE SERVICE:
 minikube service --url nginx-kube
 
 - OPTIONALLY CHECK LOGS:
