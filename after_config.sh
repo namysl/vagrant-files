@@ -24,6 +24,8 @@ kubectl port-forward service/grafana-np --address 0.0.0.0 30003:80 &
 
 - GET ACCESS TO GRAFANA:
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+- GET URL FOR SERVICE:
 minikube service --url nginx-kube
 
 - OPTIONALLY CHECK LOGS:
