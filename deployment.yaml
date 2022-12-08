@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx-on-minikube
-  name: nginx-on-minikube
+    app: nginx-kube
+  name: nginx-kube
 spec:
   replicas: 3
   strategy:
@@ -14,11 +14,11 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: nginx-on-minikube
+      app: nginx-kube
   template:
     metadata:
       labels:
-        app: nginx-on-minikube
+        app: nginx-kube
     spec:
       containers:
         - name: nginx
