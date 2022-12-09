@@ -13,7 +13,7 @@ kubectl patch svc grafana-np --type='json' --patch='[{"op": "replace", "path": "
 
 echo "Next steps needs to be performed manually:
 
-- ENABLE DASHBOARD:
+- ENABLE KUBERNETES DASHBOARD:
 minikube dashboard &
 kubectl proxy --address='0.0.0.0' --disable-filter=true &
 
@@ -28,7 +28,7 @@ kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-passwor
 - ADD DATA SOURCES IN GRAFANA:
 URL: http://prometheus-server:80
 
-- IMPORT DASHBOARD:
+- IMPORT DASHBOARD IN GRAFANA:
 ID: 1860
 
 - GET URL FOR THE SERVICE:
