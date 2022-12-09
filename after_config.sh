@@ -11,7 +11,7 @@ kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana
 kubectl patch svc grafana-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30003}]'
 
 
-echo "Next steps needs to be performed manually:
+echo "Next steps need to be performed manually:
 
 - ENABLE KUBERNETES DASHBOARD:
 minikube dashboard &
