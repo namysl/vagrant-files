@@ -31,7 +31,7 @@ URL: http://prometheus-server:80
 - IMPORT DASHBOARD IN GRAFANA:
 ID: 1860
 
-- GET URL FOR THE SERVICE:
+- GET URL OF THE SERVICE:
 minikube service --url nginx-kube
 
 - OPTIONALLY CHECK LOGS:
