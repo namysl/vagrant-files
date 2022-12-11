@@ -1,15 +1,33 @@
 #!/bin/bash
 
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm install prometheus prometheus-community/prometheus
-kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
-kubectl patch svc prometheus-server-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30002}]'
+run_minikube(){
+  minikube start
+  minikube addons enable metrics-server
+}
 
-helm repo add grafana https://grafana.github.io/helm-charts
-helm install grafana grafana/grafana
-kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
-kubectl patch svc grafana-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30003}]'
+run_nginx(){
+  kubectl apply -f vagrant-files/deployment.yaml
+  kubectl apply -f vagrant-files/service.yaml
+}
 
+run_prometheus(){
+  helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+  helm install prometheus prometheus-community/prometheus
+  kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np
+  kubectl patch svc prometheus-server-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30002}]'
+}
+
+run_grafana(){
+  helm repo add grafana https://grafana.github.io/helm-charts
+  helm install grafana grafana/grafana
+  kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np
+  kubectl patch svc grafana-np --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30003}]'
+}
+
+run_minikube
+run_nginx
+run_prometheus
+run_grafana
 
 echo "Next steps need to be performed manually:
 
