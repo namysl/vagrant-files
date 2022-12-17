@@ -6,8 +6,8 @@ run_minikube(){
 }
 
 run_nginx(){
-  kubectl apply -f vagrant-files/deployment.yaml
-  kubectl apply -f vagrant-files/service.yaml
+  kubectl apply -f vagrant-kubernetes-one-node/deployment.yaml
+  kubectl apply -f vagrant-kubernetes-one-node/service.yaml
 }
 
 run_prometheus(){
@@ -29,7 +29,7 @@ run_nginx
 run_prometheus
 run_grafana
 
-echo "Next steps need to be performed manually:
+echo "NEXT STEPS - PERFORM MANUALLY:
 
 - ENABLE KUBERNETES DASHBOARD:
 minikube dashboard &
@@ -47,7 +47,7 @@ kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-passwor
 URL: http://prometheus-server:80
 
 - IMPORT DASHBOARD IN GRAFANA:
-ID: 1860
+e.g. ID: 1860
 
 - GET URL OF THE SERVICE:
 minikube service --url nginx-kube
